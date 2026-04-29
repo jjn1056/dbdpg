@@ -1,4 +1,4 @@
-use ExtUtils::MakeMaker 7.64;
+use ExtUtils::MakeMaker;
 use Config;
 use strict;
 use warnings;
@@ -14,6 +14,7 @@ my $sep;
 BEGIN {
     my %seplist = (
                MacOS   => ':',
+               darwin  => ':',
                MSWin32 => '\\',
                os2     => '\\',
                VMS     => '\\',
@@ -28,6 +29,11 @@ use lib $lib;
 
 if ($VERSION =~ /_/) {
     print "WARNING! This is a test version ($VERSION) and should not be used in production!\n";
+}
+
+my $emmv = $ExtUtils::MakeMaker::VERSION;
+if (($^O eq 'MacOS' or $^O eq 'darwin') and $emmv < 7.64) {
+    print "WARNING! Compilation may not work unless ExtUtils::MakeMaker is version 7.64 or higher (you are at $emmv)\n";
 }
 
 if (grep { /help/ } @ARGV) {
@@ -221,7 +227,7 @@ my %opts =
      AUTHOR         => 'Greg Sabino Mullane',
      ABSTRACT       => 'PostgreSQL database driver for the DBI module',
      PREREQ_PM      => {
-                        'ExtUtils::MakeMaker' => '7.64',
+                        'ExtUtils::MakeMaker' => '6.58',
                         'DBI'                 => '1.614',
                         'File::Temp'          => '0',
                         'Test::More'          => '0.88',

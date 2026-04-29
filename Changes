@@ -20,6 +20,10 @@ Version 3.20.1  (unreleased)
    [Ed Sabol]
    (Github issue #180, PR #186)
 
+ - Drop ExtUtils::MakeMaker requirement back to 6.58, but recommend 7.64
+   [Greg Sabino Mullane, Ed Sabol, reported by Peter Tribble]
+   (Github issue #170)
+
 Version 3.20.0  (released March 19, 2026)
 
  - Cleanup and improve the statistics_info() function.
