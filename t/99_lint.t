@@ -139,7 +139,7 @@ for my $file (sort keys %manfile) {
 ##
 ## Everything in README.dev should also be in MANIFEST, except special files
 ##
-my %derived = map { $_, 1 } qw/Makefile Pg.c README.testdatabase dbdpg_test_database dbdpg_test_postgres_versions.pl/;
+my %derived = map { $_, 1 } qw/Makefile Pg.c README.testdatabase dbdpg_test_database testdb dbdpg_test_postgres_versions.pl/;
 for my $file (sort keys %devfile) {
     next if $file =~ m{misc/};
     if (!exists $manfile{$file} and !exists $derived{$file}) {
@@ -266,6 +266,11 @@ for my $file (qw{
     while (<$fh>) {
         s{([A-Za-z][A-Za-z']+)}{(my $x = $1) =~ s/'$//; delete $word{$x}; ' '}ge;
     }
+}
+
+## Special case for words only found in comments
+for (qw/ issuecomment /) {
+    delete $word{$_};
 }
 
 $t = q{Number of unused spelling words is zero};

@@ -184,15 +184,9 @@ SKIP: {
 
     my $fc = File::Comments->new();
 
-    my @files;
-    for (sort @testfiles) {
-        push @files, "$_";
-    }
-
-
     for my $file (@testfiles, qw{Makefile.PL Pg.xs Pg.pm lib/Bundle/DBD/Pg.pm
         dbdimp.c dbdimp.h quote.c quote.h Pg.h types.h dbdpg_test_postgres_versions.pl}) {
-        ## Tests as well?
+
         if (! -e $file) {
             fail (qq{Could not find the file "$file"!});
         }
@@ -493,6 +487,7 @@ IP
 IRC
 irc
 ish
+issuecomment
 ITHREADS
 jmore
 json
@@ -795,6 +790,7 @@ src
 ss
 SSL
 sslmode
+sslrootcert
 starslash
 StartTransactionCommand
 stderr
